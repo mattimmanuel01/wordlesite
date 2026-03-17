@@ -355,7 +355,7 @@
       text-align: center;
     }
 
-    /* ── FEATURES ── */
+    /* ── FEATURES (BENTO) ── */
     .features {
       position: relative;
       z-index: 1;
@@ -369,63 +369,272 @@
       margin-bottom: 60px;
     }
 
-    .features-grid {
+    .bento {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
+      grid-template-columns: repeat(12, 1fr);
+      grid-auto-rows: minmax(80px, auto);
+      gap: 14px;
     }
 
-    .feature-card {
+    .bento-item {
       position: relative;
       background: var(--dark-card);
       border: 1px solid var(--dark-border);
-      border-radius: var(--radius);
-      padding: 36px 28px;
-      transition: border-color 0.3s, transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      border-radius: 20px;
       overflow: hidden;
+      transition: border-color 0.35s, transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
     }
-    .feature-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.06), transparent);
-      opacity: 0;
-      transition: opacity 0.3s;
-    }
-    .feature-card:hover {
-      border-color: rgba(255,255,255,0.08);
+    .bento-item:hover {
+      border-color: rgba(255,255,255,0.07);
       transform: translateY(-3px);
     }
-    .feature-card:hover::before { opacity: 1; }
 
-    .feature-icon {
-      width: 44px;
-      height: 44px;
-      border-radius: 12px;
+    /* ─ Card: Levels (big number) ─ */
+    .bento-levels {
+      grid-column: span 7;
+      grid-row: span 3;
+      padding: 40px 36px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .bento-levels .big-num {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(72px, 8vw, 110px);
+      line-height: 0.9;
+      letter-spacing: -3px;
+      background: linear-gradient(135deg, var(--text-primary) 40%, var(--text-tertiary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .bento-levels .big-label {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      letter-spacing: 0.5px;
+      margin-top: 6px;
+    }
+    .bento-levels .tile-row {
+      display: flex;
+      gap: 6px;
+      margin-top: 20px;
+    }
+    .bento-levels .tile-row .t {
+      width: 38px;
+      height: 38px;
+      border-radius: 6px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 20px;
+      font-weight: 700;
+      font-size: 16px;
+      color: #fff;
+    }
+    .t-green { background: var(--green); }
+    .t-yellow { background: var(--yellow); }
+    .t-gray { background: var(--gray-tile); }
+
+    /* ─ Card: No Ads (shield) ─ */
+    .bento-noads {
+      grid-column: span 5;
+      grid-row: span 3;
+      padding: 36px 32px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      background: linear-gradient(160deg, var(--dark-card) 60%, rgba(83,141,78,0.06));
+    }
+    .bento-noads .shield {
+      width: 56px;
+      height: 56px;
+      border-radius: 16px;
+      background: rgba(83,141,78,0.1);
+      border: 1px solid rgba(83,141,78,0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
       margin-bottom: 20px;
     }
-    .feature-icon.green { background: rgba(83,141,78,0.12); color: var(--green-bright); }
-    .feature-icon.yellow { background: rgba(181,159,59,0.12); color: var(--yellow-bright); }
-    .feature-icon.gray { background: rgba(255,255,255,0.06); color: var(--text-secondary); }
-
-    .feature-card h3 {
-      font-size: 17px;
-      font-weight: 600;
+    .bento-noads .shield svg { color: var(--green-bright); }
+    .bento-noads h3 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 26px;
+      font-weight: 400;
       margin-bottom: 8px;
-      letter-spacing: -0.2px;
     }
-    .feature-card p {
+    .bento-noads p {
       font-size: 14px;
       color: var(--text-secondary);
-      line-height: 1.6;
+      line-height: 1.55;
+      max-width: 220px;
+    }
+
+    /* ─ Card: Themes (split visual) ─ */
+    .bento-themes {
+      grid-column: span 5;
+      grid-row: span 3;
+      display: flex;
+      overflow: hidden;
+    }
+    .bento-themes .theme-half {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 28px 12px;
+    }
+    .bento-themes .theme-half.dark-side {
+      background: #0e0e0e;
+    }
+    .bento-themes .theme-half.light-side {
+      background: #f0f0f0;
+    }
+    .bento-themes .mini-tile {
+      width: 32px;
+      height: 32px;
+      border-radius: 5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 14px;
+    }
+    .bento-themes .mini-row { display: flex; gap: 4px; }
+    .bento-themes .theme-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-top: 6px;
+    }
+    .dark-side .theme-label { color: var(--text-tertiary); }
+    .light-side .theme-label { color: #999; }
+    .dark-side .mini-tile { color: #fff; }
+    .light-side .mini-tile { color: #fff; }
+
+    /* ─ Card: Stats (bar chart) ─ */
+    .bento-stats {
+      grid-column: span 4;
+      grid-row: span 3;
+      padding: 32px 28px;
+      display: flex;
+      flex-direction: column;
+    }
+    .bento-stats h3 {
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--text-tertiary);
+      margin-bottom: 20px;
+    }
+    .bento-stats .bars {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 7px;
+    }
+    .bar-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .bar-row .bar-label {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-secondary);
+      width: 14px;
+      text-align: right;
+      flex-shrink: 0;
+    }
+    .bar-row .bar-track {
+      flex: 1;
+      height: 22px;
+      background: rgba(255,255,255,0.03);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .bar-row .bar-fill {
+      height: 100%;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      padding-right: 8px;
+      font-size: 11px;
+      font-weight: 600;
+      color: #fff;
+      min-width: 28px;
+    }
+    .bar-fill.accent { background: var(--green); }
+    .bar-fill.muted { background: var(--gray-tile); }
+
+    /* ─ Card: Instant (bold text) ─ */
+    .bento-instant {
+      grid-column: span 3;
+      grid-row: span 3;
+      padding: 32px 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      background: linear-gradient(170deg, var(--dark-card) 50%, rgba(181,159,59,0.05));
+    }
+    .bento-instant .zap {
+      font-size: 32px;
+      margin-bottom: 14px;
+      line-height: 1;
+    }
+    .bento-instant h3 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 22px;
       font-weight: 400;
+      line-height: 1.25;
+      margin-bottom: 8px;
+    }
+    .bento-instant p {
+      font-size: 13px;
+      color: var(--text-secondary);
+      line-height: 1.55;
+    }
+
+    /* ── MOBILE BENTO ── */
+    @media (max-width: 768px) {
+      .bento {
+        grid-template-columns: repeat(2, 1fr);
+        grid-auto-rows: auto;
+      }
+      .bento-levels {
+        grid-column: span 2;
+        grid-row: span 1;
+        padding: 32px 24px;
+      }
+      .bento-levels .big-num { font-size: 64px; }
+      .bento-noads {
+        grid-column: span 2;
+        grid-row: span 1;
+        padding: 32px 24px;
+      }
+      .bento-themes {
+        grid-column: span 2;
+        grid-row: span 1;
+        min-height: 200px;
+      }
+      .bento-stats {
+        grid-column: span 2;
+        grid-row: span 1;
+        padding: 28px 22px;
+      }
+      .bento-instant {
+        grid-column: span 2;
+        grid-row: span 1;
+        padding: 28px 22px;
+      }
     }
 
     /* ── HIGHLIGHT BANNER ── */
@@ -582,11 +791,7 @@
       .screenshots-section { padding: 60px 0 80px; }
       .screenshot-card img { width: 220px; }
 
-      .features-grid {
-        grid-template-columns: 1fr;
-        gap: 12px;
-      }
-      .feature-card { padding: 28px 22px; }
+      .bento { /* handled in bento mobile block above */ }
 
       .highlight-inner { padding: 48px 24px; }
       .highlight-stats { gap: 28px; flex-wrap: wrap; }
@@ -696,49 +901,82 @@
       <span>Features</span>
       <h2>Built for word lovers</h2>
     </div>
-    <div class="features-grid">
-      <div class="feature-card reveal" style="transition-delay: 0.05s;">
-        <div class="feature-icon green">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="m9 12 2 2 4-4"/></svg>
+    <div class="bento">
+
+      <!-- Levels: big number + tile row -->
+      <div class="bento-item bento-levels reveal">
+        <div>
+          <div class="big-num">1,700+</div>
+          <div class="big-label">levels to master</div>
         </div>
-        <h3>1,700+ Levels</h3>
-        <p>A massive library of puzzles. New word, new challenge, every single level.</p>
-      </div>
-      <div class="feature-card reveal" style="transition-delay: 0.1s;">
-        <div class="feature-icon yellow">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+        <div class="tile-row">
+          <div class="t t-green">S</div>
+          <div class="t t-yellow">T</div>
+          <div class="t t-gray">A</div>
+          <div class="t t-green">R</div>
+          <div class="t t-gray">E</div>
         </div>
-        <h3>Dark &amp; Light Mode</h3>
-        <p>Play comfortably at any hour. Switches seamlessly to match your preference.</p>
       </div>
-      <div class="feature-card reveal" style="transition-delay: 0.15s;">
-        <div class="feature-icon gray">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 20V10M12 20V4M6 20v-6"/></svg>
+
+      <!-- No Ads -->
+      <div class="bento-item bento-noads reveal" style="transition-delay: 0.06s;">
+        <div class="shield">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
         </div>
-        <h3>Track Your Stats</h3>
-        <p>Win percentage, streaks, and guess distribution. Watch yourself improve.</p>
+        <h3>Zero ads. Ever.</h3>
+        <p>No banners, no interstitials, no data harvesting. Just you and the puzzle.</p>
       </div>
-      <div class="feature-card reveal" style="transition-delay: 0.2s;">
-        <div class="feature-icon green">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+
+      <!-- Themes: split dark/light -->
+      <div class="bento-item bento-themes reveal" style="transition-delay: 0.12s;">
+        <div class="theme-half dark-side">
+          <div class="mini-row">
+            <div class="mini-tile t-green">C</div>
+            <div class="mini-tile t-gray">R</div>
+            <div class="mini-tile t-yellow">A</div>
+          </div>
+          <div class="mini-row">
+            <div class="mini-tile t-gray">N</div>
+            <div class="mini-tile t-green">E</div>
+            <div class="mini-tile t-gray">S</div>
+          </div>
+          <div class="theme-label">Dark</div>
         </div>
-        <h3>Zero Ads, Forever</h3>
-        <p>No banners. No interstitials. No data harvesting. Just the puzzle.</p>
-      </div>
-      <div class="feature-card reveal" style="transition-delay: 0.25s;">
-        <div class="feature-icon yellow">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg>
+        <div class="theme-half light-side">
+          <div class="mini-row">
+            <div class="mini-tile t-green">C</div>
+            <div class="mini-tile t-gray" style="background:#787c7e">R</div>
+            <div class="mini-tile t-yellow" style="background:#c9b458">A</div>
+          </div>
+          <div class="mini-row">
+            <div class="mini-tile t-gray" style="background:#787c7e">N</div>
+            <div class="mini-tile t-green" style="background:#6aaa64">E</div>
+            <div class="mini-tile t-gray" style="background:#787c7e">S</div>
+          </div>
+          <div class="theme-label">Light</div>
         </div>
-        <h3>Instant Play</h3>
-        <p>No signup, no loading screens. Open the app and you're playing in seconds.</p>
       </div>
-      <div class="feature-card reveal" style="transition-delay: 0.3s;">
-        <div class="feature-icon gray">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+
+      <!-- Stats: bar chart -->
+      <div class="bento-item bento-stats reveal" style="transition-delay: 0.18s;">
+        <h3>Guess distribution</h3>
+        <div class="bars">
+          <div class="bar-row"><span class="bar-label">1</span><div class="bar-track"><div class="bar-fill accent" style="width:25%">3</div></div></div>
+          <div class="bar-row"><span class="bar-label">2</span><div class="bar-track"><div class="bar-fill accent" style="width:40%">5</div></div></div>
+          <div class="bar-row"><span class="bar-label">3</span><div class="bar-track"><div class="bar-fill accent" style="width:85%">12</div></div></div>
+          <div class="bar-row"><span class="bar-label">4</span><div class="bar-track"><div class="bar-fill accent" style="width:100%">14</div></div></div>
+          <div class="bar-row"><span class="bar-label">5</span><div class="bar-track"><div class="bar-fill muted" style="width:50%">7</div></div></div>
+          <div class="bar-row"><span class="bar-label">6</span><div class="bar-track"><div class="bar-fill muted" style="width:20%">2</div></div></div>
         </div>
-        <h3>Confetti &amp; Celebrations</h3>
-        <p>Every solve earns a celebration. Because winning should feel amazing.</p>
       </div>
+
+      <!-- Instant Play -->
+      <div class="bento-item bento-instant reveal" style="transition-delay: 0.24s;">
+        <div class="zap">&#9889;</div>
+        <h3>Open &amp; play. That's it.</h3>
+        <p>No signup. No loading. No tutorial walls. You're solving in under 3 seconds.</p>
+      </div>
+
     </div>
   </section>
 
